@@ -18,7 +18,7 @@ def entities = preparedQuery.asList(withLimit(999999))
 if (entities) {		
 	for ( alert in entities ) {
 	
-	log.info("Entity: ${alert}")
+	log.info("Entity: " + alert)
 
 	if (alert.count <= 5) {
 		// Send email to user
@@ -64,5 +64,6 @@ if (entities) {
 	if (debug) {
 		print "No entities available"
 	}
+	log.info("Batch - No entities available")
 
 }
