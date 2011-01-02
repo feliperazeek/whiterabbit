@@ -1,11 +1,17 @@
-<!-- Indices written at Sun, 2 Jan 2011 16:50:31 UTC -->
+<!-- Indices written at Sun, 2 Jan 2011 18:07:14 UTC -->
 
 <datastore-indexes>
 
-    <!-- Used 1 time in query history -->
+    <!-- Used 8 times in query history -->
     <datastore-index kind="Alert" ancestor="false" source="auto">
         <property name="author" direction="asc"/>
         <property name="created" direction="desc"/>
+    </datastore-index>
+
+    <!-- Used 4 times in query history -->
+    <datastore-index kind="Alert" ancestor="false" source="auto">
+        <property name="notificationSent" direction="asc"/>
+        <property name="notificationDate" direction="asc"/>
     </datastore-index>
 
 </datastore-indexes>
