@@ -12,6 +12,9 @@ import java.util.Date
 import java.util.Calendar
 import org.joda.time.*
 import de.jollyday.util.CalendarUtil
+
+def zone = DateTimeZone.forID("America/New_York");
+
 %>
 
 <p>
@@ -57,6 +60,8 @@ def debug = false
 
 def saved = false
 
+def showCurrent = false
+
 def alert = new Entity("Alert")
 alert.created = new java.util.Date()
 alert.emailFrom = ""
@@ -93,7 +98,7 @@ if (params.setAlarm) {
 	def minute = params.minute as int
 	
 	// Set Alarm Date - Joda Time
-	def dt = new DateTime()
+	def dt = new DateTime(zone)
 	dt = dt.withHourOfDay(hour)
 	dt = dt.withMinuteOfHour(minute)
 	dt = dt.withSecondOfMinute(0)
@@ -104,7 +109,6 @@ if (params.setAlarm) {
   		log.info(String.valueOf(dt.toLocalDate()))
   		log.info("Is Weekend: " + isWeekend)
   	}
-  	dt = dt.plusHours(5)
   	alert.notificationDate = dt.toDate()
   	
 	
@@ -120,7 +124,11 @@ if (params.setAlarm) {
 
 		<div class="panel" id="added" title="Alert Added">
     		<h1>Alert Add Completed</h1>
-    		<h2>Next alarm set for: ${alert.notificationDate}</h2>
+    		<% 
+    		def localDate = new LocalDateTime(alert.notificationDate, zone);
+    		
+    		%>
+    		Next alarm set for: <b>${new java.text.SimpleDateFormat("EEE, MMM d yyyy 'at' HH:mm").format(localDate.toDateTime().toDate())}</b>
 		</div>
 
 	<% } 
@@ -145,6 +153,7 @@ if (params.setAlarm) {
 		
 		if ( entities.size() > 0 ) {
 			alert = entities.get(0)
+			showCurrent = true
 		}
    		
 	} else {
@@ -164,6 +173,11 @@ if (params.setAlarm) {
 } 
 
 %>
+
+<% if (showCurrent && alert.notificationSent == false && saved == false) { %>
+	<% def currentLocalAlertDate = new LocalDateTime(alert.notificationDate, zone) %>
+    <div id="currentAlert">The next alert is currently set for: <b>${new java.text.SimpleDateFormat("EEE, MMM d yyyy 'at' HH:mm").format(currentLocalAlertDate.toDateTime().toDate())}</b></div>
+<% } %>
 
 <p>
 <form action="/alert/set" method="POST">
@@ -189,7 +203,7 @@ if (params.setAlarm) {
 			</p> 
 
 			<p> 
-				Time (The hour and minute the notification will go out - you will get notified before that) <br /> 
+				Time (The hour and minute the notification will go out - Eastern Time) <br /> 
 				<input type="text" name="hour" size="2" maxlength="2" value="${alert.hour}" /> : <input type="text" size="2" maxlength="2" name="minute" value="${alert.minute}" />
 			</p> 
 			

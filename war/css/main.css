@@ -145,8 +145,8 @@ input {
 	border-radius: 5px;
 	border-color: #888888 #BBBBBB #CCCCCC #CCCCCC;
 	border-style: solid;
-	border-width: 1px;
-	font-size: 15px;
+	border-width: 2px;
+	font-size: 20px;
 	padding: 5px;
 }
 
@@ -171,7 +171,7 @@ input[type="submit"] {
 	border:1px solid #191919;
 	color: white;
 	cursor: pointer;
-	font-size: 26px;
+	font-size: 30px;
 	padding:6px 10px;
 	text-decoration: none;
 	text-shadow: 1px 1px 1px rgba(1, 1, 1, 0.35);
@@ -235,7 +235,24 @@ body:before {
 	margin-top:-32767px;/
 }
 
-div#logo_hdr { border-bottom-color: #fafff6; border-bottom-style: none; text-transform: capitalize; font-variant: small-caps; font-style: italic; font-weight: bold; font-size: 70px; text-shadow: 2px 2px 2px #e2e2e2; float: left; color: #28d000 }
+div#logo_hdr { border-bottom-color: #fafff6; border-bottom-style: none; text-transform: capitalize; font-variant: small-caps; font-style: italic; font-weight: bold; font-size: 70px; text-shadow: 2px 2px 2px #e2e2e2; float: left; color: #28d000;
+	font-weight: bold;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background-color: red;
+	background-image: -moz-linear-gradient(center top , #629335 0%, #45791C 100%);
+	border:1px solid #191919;
+	color: white;
+	cursor: pointer;
+	font-size: 50px;
+	padding:6px 10px;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px rgba(1, 1, 1, 0.35);
+	vertical-align: middle;
+	width: auto;
+
+ }
 div#navigation ul.navigation { list-style: none; float: right; margin-left: 20px; }
 div#navigation ul.navigation li { float: left; margin-left: 10px; margin-right: 10px; margin-top: 15px; }
 div#navigation ul.navigation li a { color: #eee; text-decoration: none; background: none; padding: 5px; font-size: 14px; }
