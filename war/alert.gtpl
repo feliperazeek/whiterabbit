@@ -89,12 +89,14 @@ if (params.setAlarm) {
 	
 	// Get Params
 	def hour = params.hour as int
+	hour = hour
 	def minute = params.minute as int
 	
 	// Set Alarm Date - Joda Time
 	def dt = new DateTime()
 	dt = dt.withHourOfDay(hour)
 	dt = dt.withMinuteOfHour(minute)
+	dt = dt.withSecondOfMinute(0)
   	def isWeekend = true
   	while (isWeekend) {
   		dt = dt.plusDays(1)
@@ -102,6 +104,7 @@ if (params.setAlarm) {
   		log.info(String.valueOf(dt.toLocalDate()))
   		log.info("Is Weekend: " + isWeekend)
   	}
+  	dt = dt.plusHours(5)
   	alert.notificationDate = dt.toDate()
   	
 	
