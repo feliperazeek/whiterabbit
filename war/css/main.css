@@ -35,12 +35,10 @@ div {
 #wrapper1 {
 	width: 100%;
 	min-height: 100%;
-	background: url("../images/dtp_bg_ftr.gif") repeat-x 0 100%;
 }
 #wrapper2 {
 	width: 100%;
 	min-height: 100%;
-	background: url("../images/dtp_bg_addl.gif") repeat-x 0 48%;
 }
 #wrapper3 {
 	width: 100%;
@@ -58,7 +56,6 @@ div {
 	margin: 0 auto;
 }
 #centercol_home {
-	background: #fff url("../images/dtp_bg_main.gif") no-repeat 0 180px;
 	margin-left: 19%;
 }
 #centercol {
@@ -112,11 +109,9 @@ div {
 	width: 100%;
 	margin: 20px 0;
 	padding: 20px 0 0 0;
-	background: #fff url("../images/dtp_content_top.gif") no-repeat 0 0;
 }
 #centercol #content_wide {
 	width: 100%;
-	background: #fff url("../images/dtp_content_btm.gif") no-repeat 0 100%;
 }
 #centercol #content_wide h1, #centercol #content_wide p {
 	margin: 20px;
