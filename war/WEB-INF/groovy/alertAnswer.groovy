@@ -1,0 +1,2 @@
+
+forward '/alertAnswer.gtpl'
