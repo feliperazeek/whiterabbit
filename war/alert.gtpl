@@ -10,6 +10,8 @@ import com.google.appengine.api.datastore.*
 import java.util.List
 import java.util.Date
 import java.util.Calendar
+import org.joda.time.*
+import de.jollyday.util.CalendarUtil
 %>
 
 <p>
@@ -27,7 +29,20 @@ import java.util.Calendar
     email my boss in case I didn't wake in time to do so.</p>
     <div class="clear"></div> 
     <div class="clear"></div> <div class="clear"></div> 
-    It turns out there's an app for that - and it is awesome!
+    It turns out there's an app for that - and it is awesome! So how does it work?
+    </h3>
+</p>
+
+<p>
+	<h3>
+	<div class="clear"></div>
+    1) You need to use the form below to set the alert. Starting at the time you choose, we will try to contact you by email five times every five minutes (weekdays only). 
+    <div class="clear"></div><br>
+    2) You need to click on the link that's inside the email you will receive from us.
+    <div class="clear"></div><br>
+    3) If you don't click on that link, we will send an email to the person you specify saying whatever you want us to say.
+    <div class="clear"></div><br>
+    That's it! Simple huh?
     </h3>
 </p>
 
@@ -76,13 +91,19 @@ if (params.setAlarm) {
 	def hour = params.hour as int
 	def minute = params.minute as int
 	
-	// Set Alarm Date
-	def calendar = Calendar.getInstance()
-	calendar.add(Calendar.DATE, 1)
-	calendar.set(Calendar.HOUR, hour)
-	calendar.set(Calendar.MINUTE, minute)
-	calendar.set(Calendar.SECOND, 0)
-	alert.notificationDate = calendar.getTime()
+	// Set Alarm Date - Joda Time
+	def dt = new DateTime()
+	dt = dt.withHourOfDay(hour)
+	dt = dt.withMinuteOfHour(minute)
+  	def isWeekend = true
+  	while (isWeekend) {
+  		dt = dt.plusDays(1)
+  		isWeekend = CalendarUtil.isWeekend(dt.toLocalDate())
+  		log.info(String.valueOf(dt.toLocalDate()))
+  		log.info("Is Weekend: " + isWeekend)
+  	}
+  	alert.notificationDate = dt.toDate()
+  	
 	
 
 	if ( users.isUserLoggedIn() ) {

@@ -11,6 +11,8 @@ import com.google.appengine.api.datastore.*
 import java.util.List
 import java.util.Date
 import java.util.Calendar
+import org.joda.time.*
+import de.jollyday.util.CalendarUtil
 
 
 if (user) {
@@ -28,15 +30,21 @@ if (user) {
 					alert.notificationSent = false
 					alert.count = 0
 				
-					def calendar = Calendar.getInstance()
-					calendar.setTime(alert.notificationDate)
-					calendar.add(Calendar.DATE, 1)
-					alert.notificationDate = calendar.getTime()
+					// Set Alarm Date - Joda Time
+					def dt = new DateTime(alert.notificationDate)
+  					def isWeekend = true
+  					while (isWeekend) {
+  						dt = dt.plusDays(1)
+  						isWeekend = CalendarUtil.isWeekend(dt.toLocalDate())
+  						log.info(String.valueOf(dt.toLocalDate()))
+  						log.info("Is Weekend: " + isWeekend)
+  					}
+  					alert.notificationDate = dt.toDate()
 				
 					alert.save()
 					
 %>
-					<p>Next alarm set for <b>${alert.notificationDate}</b></p>
+					<p>Great Job! Next alarm set for <b>${alert.notificationDate}.</b></p>
 			
 <%		
 				} else {
@@ -58,8 +66,6 @@ if (user) {
 <%
 
 }
-
-%>
 
 %>
 
