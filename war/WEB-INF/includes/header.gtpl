@@ -21,15 +21,22 @@
 
 </script>
 
+	<meta name="google-site-verification" content="OCTrqFiz5__Vd5rsxjAymXzyp081OYAmXOkbwGx0L3U" />
+	<meta name='description' content='WhiteRabbit.io | Late to work often? Me too but I got a dirty little secret'/> 
+	<meta name='keywords' content='WhiteRabbit.io, Late to work, Email my boss, Running late to work, White Rabbit'/> 
+	<link rel="canonical" href="http://www.whiterabbit.io/" /> 
+
     </head>
     <body>
     
 	<div id="main-wrapper"> 
+	
 		<div id="wrapper1"> 
 		<div id="wrapper3"> 
 		    <div id="maincol"> 
 		
 				<div id="centercol"> 
+		
 		            
 					<div id="logo_hdr"> 
 							<form action="/" method="get"><input type="submit" value="WHITE RABBIT"></form> 
