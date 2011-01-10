@@ -22,7 +22,7 @@ if (entities) {
 
 	if (alert.count <= 5) {
 		// Send email to user
-		mail.send sender: "whiterabbit@opengraph.co",
+		mail.send sender: "fo@whiterabbit.io",
 		to: alert.emailFrom,
 		subject: "[ACTION REQUIRED] White Rabbit - Notification ${alert.count} of 5",
 		textBody: "Wake up - <a href='http://whiterabbit-io.appspot.com/alert/answer'>Notify us</a> you are awake otherwise we are going to send the alert out!"
@@ -40,7 +40,7 @@ if (entities) {
 	
 	} else {
 		// Send Email to Boss 
-		mail.send sender: alert.emailFrom,
+		mail.send sender: "fo@whiterabbit.io",
 		to: alert.emailTo,
 		subject: alert.emailSubject,
 		textBody: alert.emailBody
