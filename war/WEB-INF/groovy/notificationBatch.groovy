@@ -17,15 +17,15 @@ def entities = preparedQuery.asList(withLimit(999999))
 
 if (entities) {		
 	for ( alert in entities ) {
-
-	print "Entity: ${alert}"
+	
+	log.info("Entity: " + alert)
 
 	if (alert.count <= 5) {
 		// Send email to user
-		mail.send sender: "whiterabbit@opengraph.co",
+		mail.send sender: "fo@whiterabbit.io",
 		to: alert.emailFrom,
 		subject: "[ACTION REQUIRED] White Rabbit - Notification ${alert.count} of 5",
-		textBody: "Wake up! <a href="http://whiterabbit.appspot.com/alert/answer">Notify us</a> you are awake otherwise we are going to send the alert out!"
+		textBody: "Wake up - <a href='http://whiterabbit-io.appspot.com/alert/answer'>Notify us</a> you are awake otherwise we are going to send the alert out!"
 		
 		// Update Count
 		alert.count = alert.count + 1
@@ -36,10 +36,11 @@ if (entities) {
 			print "<p>Email to user was sent to " + alert.emailFrom + ".</p>"
 			print "<p>Count Updated: " + alert.count + "</p>"
 		}
+		log.info("Email to user was sent to " + alert.emailFrom + ", count: " + alert.count)
 	
 	} else {
 		// Send Email to Boss 
-		mail.send sender: alert.emailFrom,
+		mail.send sender: "fo@whiterabbit.io",
 		to: alert.emailTo,
 		subject: alert.emailSubject,
 		textBody: alert.emailBody
@@ -53,6 +54,7 @@ if (entities) {
 			print "<p>Notification to boss was sent to " + alert.emailTo + ".</p>"
 			print "<p>Notification Sent Updated: " + alert.notificationSent + "</p>"
 		}
+		log.info("Notification to boss was sent to " + alert.emailTo)
 	}
 	
 	print "<hr>"
@@ -62,5 +64,6 @@ if (entities) {
 	if (debug) {
 		print "No entities available"
 	}
+	log.info("Batch - No entities available")
 
 }
