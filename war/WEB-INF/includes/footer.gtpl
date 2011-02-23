@@ -3,6 +3,7 @@
   <div id="footer_nav_subpage"> 
     <ul class="navigation"> 
 	    <li><a href="http://www.socialestates.com">&#169; 2010 SocialEstates.com</a></li> 
+		<li><a href="http://geeks.aretotally.in">Felipe Oliveira (Geeks Are Totally In!)</a></li>
 		                      		   <li><a href="/">Home</a></li> 
 		                      		   <% if (user) { %>
 		                               <li><a href="mailto:${user.nickname}">Logged In As: ${user.nickname}</a></li> 
